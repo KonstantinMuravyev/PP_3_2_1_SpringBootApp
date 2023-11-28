@@ -9,10 +9,10 @@ import ru.muravyev.PP_3_2_1_SpringBootApp.model.User;
 
 import java.util.List;
 
-@Transactional
+@Transactional(readOnly = true)
 @Service
 public class UserServiceImpl implements UserService {
-    private UserDao userDao;
+    private final UserDao userDao;
 
     @Autowired
     public UserServiceImpl(UserDao userDao) {
@@ -24,11 +24,13 @@ public class UserServiceImpl implements UserService {
         return userDao.getUserById(id);
     }
 
+    @Transactional
     @Override
     public void updateUser(User user) {
         userDao.updateUser(user);
     }
 
+    @Transactional
     @Override
     public void removeUserById(long id) {
         userDao.removeUserById(id);
@@ -39,6 +41,7 @@ public class UserServiceImpl implements UserService {
         return userDao.getAllUsers();
     }
 
+    @Transactional
     @Override
     public void saveUser(User user) {
         userDao.saveUser(user);

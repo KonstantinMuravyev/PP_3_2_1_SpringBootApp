@@ -1,12 +1,10 @@
 package ru.muravyev.PP_3_2_1_SpringBootApp.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.muravyev.PP_3_2_1_SpringBootApp.model.User;
 import ru.muravyev.PP_3_2_1_SpringBootApp.service.UserService;
 
@@ -51,7 +49,7 @@ public class UserController {
         return "one_user";
     }
 
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("delete/{id}")
     public String deleteUser(@PathVariable("id") int id) {
         userService.removeUserById(id);
         return "redirect:/";
@@ -64,7 +62,7 @@ public class UserController {
         return "edit";
     }
 
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     public String editUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         user.setId(id);
         userService.updateUser(user);

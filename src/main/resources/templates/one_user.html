@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
@@ -35,7 +35,7 @@
     <a th:href="@{/edit/{id}(id=${user.id})}">Изменить</a> |
     <a th:href="@{/delete/{id}(id=${user.id})}">Удалить</a>
   </div>
-  <form method="post" th:if="${allowDelete}" th:action="@{/delete/{id}(id=${user.id})}" th:object="${user}">
+  <form th:method="DELETE" th:action="@{/delete/{id}(id=${user.id})}">
     <input type="submit" value="Удалить"/>
   </form>
 </div>
